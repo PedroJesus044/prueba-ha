@@ -2,10 +2,10 @@ schemaVersion: 2.2.0
 components:
   - name: nginx
     container:
-      image: node:18-alpine
+      image: nginx:latest
       endpoints:
-        - name: http-3000
-          targetPort: 3000
+        - name: http-8080
+          targetPort: 8080
 commands:
   - id: update
     exec:
