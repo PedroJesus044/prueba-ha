@@ -4,3 +4,4 @@ FROM rhel9/nginx-122
 # COPY nginx.conf /etc/nginx/nginx.conf
 
 # CMD $STI_SCRIPTS_PATH/usage
+CMD ["run", "-p", "8443:8443"]
