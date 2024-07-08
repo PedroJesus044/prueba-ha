@@ -1,6 +1,6 @@
 schemaVersion: 2.2.0
 components:
-  - name: nginx
+  - name: este-nginx
     image:
       imageName: nginx-tuneada:latest
       autoBuild: true
@@ -14,7 +14,7 @@ commands:
   - id: update
     exec:
       commandLine: yum update
-      component: nginx
+      component: este-nginx
       workingDir: .
       group:
         isDefault: true
@@ -22,7 +22,7 @@ commands:
   - id: run
     exec:
       commandLine: echo "Holi"
-      component: nginx
+      component: este-nginx
       workingDir: .
       group:
         isDefault: true
