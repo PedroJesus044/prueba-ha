@@ -10,20 +10,3 @@ components:
           - 'MY_ENV=/home/path'
         buildContext: .
         rootRequired: false
-commands:
-  - id: update
-    exec:
-      commandLine: yum update
-      component: este-nginx
-      workingDir: .
-      group:
-        isDefault: true
-        kind: build
-  - id: run
-    exec:
-      commandLine: echo "Holi"
-      component: este-nginx
-      workingDir: .
-      group:
-        isDefault: true
-        kind: run
