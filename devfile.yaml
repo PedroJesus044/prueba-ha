@@ -1,11 +1,15 @@
 schemaVersion: 2.2.0
 components:
   - name: nginx
-    container:
-      image: nginx:latest
-      endpoints:
-        - name: http-8080
-          targetPort: 8080
+    image:
+      imageName: nginx-tuneada:latest
+      autoBuild: true
+      dockerfile:
+        uri: docker/nginx.Dockerfile
+        args:
+          - 'MY_ENV=/home/path'
+        buildContext: .
+        rootRequired: false
 commands:
   - id: update
     exec:
