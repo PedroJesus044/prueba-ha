@@ -1,5 +1,5 @@
 FROM rhel9/nginx-122
-# USER root
+USER root
 RUN mkdir /app
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /app
