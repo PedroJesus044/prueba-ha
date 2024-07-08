@@ -3,20 +3,19 @@ metadata:
   name: python
   projectType: Python
   displayName: Python
-  icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/python.svg
+  icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/python.svg #Waos, entonces de aquí podemos sacar el ícono
   description:
-    'Python is an interpreted, object-oriented, high-level programming language with dynamic semantics.
-    Its high-level built in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development, as well as for use as a scripting or glue language to connect existing components together.'
+    'Pon tu descripción aquí mismo'
   language: Python
-  version: 1.0.1
+  version: 1.0.0 #A tu elección
   provider: Red Hat
-  tags:
+  tags: #También los tags son importantes
     - Python
     - Pip
     - Flask
-  supportUrl: https://github.com/devfile-samples/devfile-support#support-information
+  supportUrl: https://github.com/devfile-samples/devfile-support#support-information #El enlace al github
   attributes:
-    alpha.dockerimage-port: 8081
+    alpha.dockerimage-port: 8080
 parent:
   id: python
   registryUrl: 'https://registry.devfile.io'
@@ -24,36 +23,38 @@ parent:
 components:
   - name: image-build
     image:
-      imageName: python-image:latest
+      imageName: nginx-image:latest
       dockerfile:
         uri: docker/nginx.Dockerfile
         buildContext: .
         rootRequired: false
+
   - name: kubernetes-deploy
     attributes:
       deployment/replicas: 1
       deployment/cpuRequest: 10m
       deployment/memoryRequest: 50Mi
-      deployment/container-port: 8081
+      deployment/container-port: 8080
     kubernetes:
       uri: deploy.yaml
       endpoints:
-        - name: http-8081
-          targetPort: 8081
+        - name: http-8080
+          targetPort: 8080
           path: /
           secure: true
-# commands:
-#   - id: build-image
-#     apply:
-#       component: image-build
-#   - id: deployk8s
-#     apply:
-#       component: kubernetes-deploy
-#   - id: deploy
-#     composite:
-#       commands:
-#         - build-image
-#         - deployk8s
-#       group:
-#         kind: deploy
-#         isDefault: true
+
+commands:
+  - id: build-image
+    apply:
+      component: image-build
+  - id: deployk8s
+    apply:
+      component: kubernetes-deploy
+  - id: deploy
+    composite:
+      commands:
+        - build-image
+        - deployk8s
+      group:
+        kind: deploy
+        isDefault: true
