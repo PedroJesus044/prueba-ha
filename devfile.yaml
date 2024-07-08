@@ -1,12 +1,12 @@
 schemaVersion: 2.2.0
+metadata:
+  name: developer-images
+attributes:
+  controller.devfile.io/storage-type: ephemeral
+  controller.devfile.io/scc: container-build
 components:
-  - name: este-nginx
-    image:
-      imageName: nginx-tuneada:latest
-      autoBuild: true
-      dockerfile:
-        uri: docker/nginx.Dockerfile
-        args:
-          - 'MY_ENV=/home/path'
-        buildContext: .
-        rootRequired: false
+  - name: devtools
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      memoryLimit: 2Gi
+      memoryRequest: 256Mi
