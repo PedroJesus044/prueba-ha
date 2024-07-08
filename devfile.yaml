@@ -1,8 +1,8 @@
 schemaVersion: 2.2.0
 components:
-  - name: este-nginx
+  - name: outerloop-build
     image:
-      imageName: nginx-tuneada:latest
+      imageName: my-nginx-image:latest
       autoBuild: true
       dockerfile:
         uri: docker/nginx.Dockerfile
