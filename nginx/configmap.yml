@@ -32,7 +32,6 @@ data:
 
     #Esta configuración permite hacer round robin sobre el backend especificado
     http{
-
         server {
           listen 8080;
             location / {
