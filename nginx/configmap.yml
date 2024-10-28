@@ -33,7 +33,7 @@ data:
     #Esta configuración permite hacer round robin sobre el backend especificado
     http{
         upstream backend {
-              server https://backend-electronico-prueba2-electronico.apps.ocpprod.pjedomex.gob.mx;
+              server backend-electronico-prueba2-electronico.apps.ocpprod.pjedomex.gob.mx;
         }
 
         server {

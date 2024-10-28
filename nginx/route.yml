@@ -5,7 +5,7 @@ metadata:
   # namespace: pibarrap044-dev
   labels: {}
 spec:
-  host: mi-backend.openshift.pjedomex.mx
+  host: reverse-proxy-42.openshift.pjedomex.gob.mx
   path: /
   to:
     kind: Service

@@ -4,7 +4,7 @@ metadata:
   name: reverse-proxy
   # namespace: pibarrap044-dev
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: reverse-proxy
@@ -13,9 +13,13 @@ spec:
       labels:
         app: reverse-proxy
     spec:
+      hostAliases:
+      - ip: "10.22.249.7"
+        hostnames:
+        - "backend-electronico-prueba2-electronico.apps.ocpprod.pjedomex.gob.mx"
       containers:
       - name: reverse-proxy
-        image: rhel9/nginx-122
+        image: registry.access.redhat.com/ubi9/nginx-122@sha256:e00298a14da31d7e875dfb9560ba0198c89ac533fb6705b993289320babb4988
         command: ["/usr/libexec/s2i/run"]
         ports:
         - containerPort: 8080
@@ -26,10 +30,10 @@ spec:
           requests:
             cpu: 500m
             memory: 1Gi
-          volumeMounts:
-            #/etc/nginx/nginx.conf
-            - name: reverse-proxy
-              mountPath: /etc/nginx/
+        volumeMounts:
+          #/etc/nginx/nginx.conf
+          - name: reverse-proxy
+            mountPath: /etc/nginx
       volumes:
         - name: reverse-proxy
           configMap:
