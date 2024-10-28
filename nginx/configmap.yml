@@ -32,14 +32,11 @@ data:
 
     #Esta configuración permite hacer round robin sobre el backend especificado
     http{
-        upstream backend {
-              server backend-electronico-prueba2-electronico.apps.ocpprod.pjedomex.gob.mx;
-        }
 
         server {
           listen 8080;
             location / {
-                proxy_pass http://backend;
+            proxy_pass https://backend-electronico-prueba2-electronico.apps.ocpprod.pjedomex.gob.mx;
             }
         }
     }
