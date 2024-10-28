@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverse-proxy
+  # namespace: pibarrap044-dev
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: reverse-proxy
+  template:
+    metadata:
+      labels:
+        app: reverse-proxy
+    spec:
+      containers:
+      - name: reverse-proxy
+        image: rhel9/nginx-122
+        command: ["/usr/libexec/s2i/run"]
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 4
+            memory: 6Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          volumeMounts:
+            #/etc/nginx/nginx.conf
+            - name: reverse-proxy
+              mountPath: /etc/nginx/
+      volumes:
+        - name: reverse-proxy
+          configMap:
+            name: reverse-proxy
+            defaultMode: 420

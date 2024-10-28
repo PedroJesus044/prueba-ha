@@ -1,0 +1,18 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: reverse-proxy
+  # namespace: pibarrap044-dev
+  labels: {}
+spec:
+  host: mi-backend.openshift.pjedomex.mx
+  path: /
+  to:
+    kind: Service
+    name: reverse-proxy
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+  port:
+    targetPort: reverse-proxy
+  alternateBackends: []
